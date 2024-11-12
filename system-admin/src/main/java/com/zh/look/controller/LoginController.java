@@ -2,7 +2,7 @@ package com.zh.look.controller;
 
 import cn.dev33.satoken.stp.StpUtil;
 import com.zh.look.ExceptionConfig.MyException;
-import com.zh.look.domain.UserVo;
+import com.zh.look.domain.vo.UserVo;
 import com.zh.look.domain.dto.UserLoginDto;
 import com.zh.look.resultTool.Result;
 import com.zh.look.service.UsersService;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/login")
 @Tag(name = "用户登录模块")
-
 public class LoginController {
-
-
+    /**
+     * 登录模块控制器
+     */
     @Autowired
     private UsersService usersService;
 

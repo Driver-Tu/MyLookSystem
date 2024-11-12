@@ -1,0 +1,20 @@
+server:
+  port: 10088
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: system-login
+          uri: http://localhost:10086
+          predicates:
+            - Path=/login/**
+        - id: system-doctor
+          uri: http://localhost:10086
+          predicates:
+            - Path=/doctor/**
+  main:
+    web-application-type: reactive
+#springboot排除自动配置
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration

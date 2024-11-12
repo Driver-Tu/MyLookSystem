@@ -5,17 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.zh.look</groupId>
-        <artifactId>look-system</artifactId>
+        <artifactId>system-service</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>system-service</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>admin-service</module>
-        <module>doctor-service</module>
-        <module>patients-service</module>
-    </modules>
+    <artifactId>patients-service</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

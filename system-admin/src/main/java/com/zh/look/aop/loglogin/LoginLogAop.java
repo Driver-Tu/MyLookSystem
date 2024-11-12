@@ -1,7 +1,7 @@
 package com.zh.look.aop.loglogin;
 
 import com.zh.look.dao.LoginLogs;
-import com.zh.look.domain.UserVo;
+import com.zh.look.domain.vo.UserVo;
 import com.zh.look.iputil.IpUtil;
 import com.zh.look.resultTool.Result;
 import com.zh.look.service.LoginLogsService;

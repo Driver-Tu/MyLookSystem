@@ -20,7 +20,8 @@ public class StpInterfaceImpl implements StpInterface {
     @Override
     public List<String> getRoleList(Object o, String s) {
         List<String> roles;
-        roles=userMapper.getUserRoles(StpUtil.getLoginIdAsInt()).stream().parallel().map(userRole->userRole.getRoleId().toString()).toList();
+        roles=userMapper.getUserRoles(Integer.parseInt(o.toString())).stream().parallel().map(userRole->userRole.getRoleId().toString()).toList();
+        System.out.println(roles);
         return roles;
     }
 }

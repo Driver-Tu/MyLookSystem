@@ -13,6 +13,7 @@
         <module>system-common</module>
         <module>system-gateway</module>
         <module>system-service</module>
+        <module>system-look</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -25,7 +26,6 @@
                 <artifactId>spring-boot-starter-parent</artifactId>
                 <version>3.3.5</version>
                 <type>pom</type>
-                <scope>import</scope>
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -97,4 +97,20 @@
                 <version>2.0.2</version>
             </dependency>
         </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <source>11</source> <!-- depending on your project -->
+                        <target>11</target> <!-- depending on your project -->
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>

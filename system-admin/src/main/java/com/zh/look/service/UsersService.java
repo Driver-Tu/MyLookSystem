@@ -2,7 +2,7 @@ package com.zh.look.service;
 
 import com.zh.look.dao.Users;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.zh.look.domain.UserVo;
+import com.zh.look.domain.vo.UserVo;
 
 
 /**

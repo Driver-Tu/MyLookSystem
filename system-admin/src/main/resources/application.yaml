@@ -40,4 +40,6 @@ sa-token:
   is-read-cookie: false
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml # 如果你有 XML 映射文件
-  type-aliases-package: com.yourpackage.entity # 实体类所在的包
+  type-aliases-package: com.zh.look.bean # 实体类所在的包
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

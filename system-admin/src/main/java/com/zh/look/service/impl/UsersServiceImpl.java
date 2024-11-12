@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zh.look.ExceptionConfig.MyException;
 import com.zh.look.dao.Users;
-import com.zh.look.domain.UserVo;
+import com.zh.look.domain.vo.UserVo;
 import com.zh.look.mapper.UsersMapper;
 import com.zh.look.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;

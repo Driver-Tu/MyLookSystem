@@ -28,33 +28,34 @@ public class ExceptionConfiguration {
     @ExceptionHandler(NotLoginException.class)
     public ResponseEntity handlerNotLoginException(NotLoginException nle, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-
-        // 打印堆栈，以供调试
-        nle.printStackTrace();
-
         // 判断场景值，定制化异常信息
-        String message = "";
+        Result<String> result=new Result<>();
         if(nle.getType().equals(NotLoginException.NOT_TOKEN)) {
-            message = "未提供token";
+            result.setMsg("未提供token");
+            result.setCode(500);
         }
         else if(nle.getType().equals(NotLoginException.INVALID_TOKEN)) {
-            message = "token无效";
+            result.setMsg("token无效");
+            result.setCode(501);
         }
         else if(nle.getType().equals(NotLoginException.TOKEN_TIMEOUT)) {
-            message = "token已过期";
+            result.setMsg("token已过期");
+            result.setCode(502);
         }
         else if(nle.getType().equals(NotLoginException.BE_REPLACED)) {
-            message = "token已被顶下线";
+            result.setMsg("token已被顶下线");
+            result.setCode(503);
         }
         else if(nle.getType().equals(NotLoginException.KICK_OUT)) {
-            message = "token已被踢下线";
+            result.setMsg("token已被踢下线");
+            result.setCode(504);
         }
         else {
-            message = "当前会话未登录";
+            result.setMsg("当前会话未登录");
+            result.setCode(505);
         }
-
         // 返回给前端
-        return ResponseEntity.ok(message);
+        return ResponseEntity.ok(result);
     }
 
 
