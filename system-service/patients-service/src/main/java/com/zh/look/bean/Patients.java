@@ -4,9 +4,13 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
 
 /**
  * 患者信息表
@@ -14,6 +18,8 @@ import lombok.Data;
  */
 @TableName(value ="patients")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Patients implements Serializable {
     /**
      * 患者ID，主键，自增
@@ -42,6 +48,14 @@ public class Patients implements Serializable {
     private String phone;
 
     /**
+     * 患者年龄
+     */
+    private Integer age;
+    /**
+     * 患者性别，0为男，1为女
+     */
+    private Integer sex;
+    /**
      * 创建时间，默认值为当前时间
      */
     private Date createdAt;
@@ -51,6 +65,7 @@ public class Patients implements Serializable {
      */
     private Date updatedAt;
 
+    @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 

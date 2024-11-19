@@ -15,8 +15,8 @@
         <module>admin-service</module>
         <module>doctor-service</module>
         <module>patients-service</module>
+        <module>role-service</module>
     </modules>
-
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>

@@ -4,7 +4,5 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zh.look.mapper.DoctorsMapper">
 
-    <select id="selectDoctors" resultType="com.zh.look.bean.Doctors">
 
-    </select>
 </mapper>

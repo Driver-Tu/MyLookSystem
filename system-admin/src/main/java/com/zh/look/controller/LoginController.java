@@ -1,9 +1,8 @@
 package com.zh.look.controller;
 
 import cn.dev33.satoken.stp.StpUtil;
-import com.zh.look.ExceptionConfig.MyException;
-import com.zh.look.domain.vo.UserVo;
 import com.zh.look.domain.dto.UserLoginDto;
+import com.zh.look.domain.vo.UserVo;
 import com.zh.look.resultTool.Result;
 import com.zh.look.service.UsersService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/login")
-@Tag(name = "用户登录模块")
+@Tag(name = "用户登录控制器")
 public class LoginController {
     /**
      * 登录模块控制器
@@ -38,7 +37,7 @@ public class LoginController {
             @ApiResponse(responseCode = "507", description = "该设备未登录")})
     public Result<Boolean> loginOut(@RequestParam @Parameter(name = "device", description = "设备标识，用于区分设备") String device) {
         if (StpUtil.isLogin(StpUtil.getLoginId()) && StpUtil.getSessionByLoginId(StpUtil.getLoginId()).getTokenValueListByDevice(device).isEmpty()) {
-            throw new MyException(507, "该设备未登录");
+            return new Result<>(507, "该设备未登录",null);
         }
         StpUtil.logout(StpUtil.getLoginId(), device);
         return new Result<>(200, "退出成功", true);

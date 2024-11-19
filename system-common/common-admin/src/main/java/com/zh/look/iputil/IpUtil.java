@@ -1,7 +1,7 @@
 package com.zh.look.iputil;
 
-import com.zh.look.ExceptionConfig.MyException;
 import jakarta.servlet.http.HttpServletRequest;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -38,7 +38,7 @@ public class IpUtil {
                 return "无ip";
             }
         } catch (Exception e) {
-            throw new MyException(600,"ip获取失败");
+            return "ip获取失败，遇到未知错误";
         }
     }
 }

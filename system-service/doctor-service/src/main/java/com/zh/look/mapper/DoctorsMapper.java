@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
 */
 @Mapper
 public interface DoctorsMapper extends BaseMapper<Doctors> {
-    public Doctors selectDoctors(Integer id);
+
 }
 
 

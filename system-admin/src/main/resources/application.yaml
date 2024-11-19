@@ -1,6 +1,8 @@
 server:
   port: 10086
 spring:
+  main:
+    banner-mode: log
   datasource:
     url: jdbc:mysql://192.168.200.188:3306/user?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
@@ -17,7 +19,6 @@ spring:
           max-wait: -1
           max-idle: 5
           min-idle: 0
-
 ############## Sa-Token 配置 (文档: https://sa-token.cc) ##############
 sa-token:
   # token名称 (同时也是cookie名称)
@@ -40,6 +41,5 @@ sa-token:
   is-read-cookie: false
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml # 如果你有 XML 映射文件
-  type-aliases-package: com.zh.look.bean # 实体类所在的包
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

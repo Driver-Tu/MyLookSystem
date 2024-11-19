@@ -1,8 +1,8 @@
 package com.zh.look.mapper;
 
-import com.zh.look.dao.UserRoles;
-import com.zh.look.dao.Users;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zh.look.bean.UserRoles;
+import com.zh.look.dao.Users;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
