@@ -12,11 +12,9 @@ import com.zh.look.mapper.DoctorsMapper;
 import com.zh.look.service.DoctorsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -45,10 +43,7 @@ public class DoctorsServiceImpl extends ServiceImpl<DoctorsMapper, Doctors>
             getDoctor(page,doctorDto);
         }
         String s = redisTemplate.opsForValue().get("doctors:"+JSONUtil.toJsonStr(doctorDto));
-        List<Doctors> doctors = JSONUtil.toList(s, Doctors.class);
-        page.setRecords(doctors);
-        page.setSize(doctors.size());
-        return page;
+        return JSONUtil.toBean(s, Page.class);
     }
 
     @Override
@@ -58,13 +53,12 @@ public class DoctorsServiceImpl extends ServiceImpl<DoctorsMapper, Doctors>
             throw new MyException(602,"无法修改");
         }
         if(updateById(doctors)){
-            //将最基本的分页参数删除，并且再次缓存
-            page=new Page<Doctors>(1,20);
-            DoctorDto doctorDto = new DoctorDto();
-            doctorDto.setPageNum(1);
-            doctorDto.setPageSize(20);
+            //将最基本的分页参数删除
+            DoctorDto d = new DoctorDto();
+            d.setPageNum(1);
+            d.setPageSize(20);
             //校验redis里面是否有该数据
-            getDoctor(page,doctorDto);
+            redisTemplate.delete("doctors"+JSONUtil.toJsonStr(d));
             return updateById(doctors);
         }else {
          throw new MyException(605,"修改失败");
@@ -75,12 +69,10 @@ public class DoctorsServiceImpl extends ServiceImpl<DoctorsMapper, Doctors>
     public boolean addDoctor(Doctors doctors) {
         if(doctorMapper.insert(doctors)>0){
             //将最基本的分页参数删除，并且再次缓存
-            page=new Page<Doctors>(1,20);
-            DoctorDto doctorDto = new DoctorDto();
-            doctorDto.setPageNum(1);
-            doctorDto.setPageSize(20);
-            //校验redis里面是否有该数据
-            getDoctor(page,doctorDto);
+            DoctorDto d = new DoctorDto();
+            d.setPageNum(1);
+            d.setPageSize(20);
+            getDoctor(page,d);
             return true;
         }
         throw new MyException(603,"添加失败");
@@ -109,7 +101,7 @@ public class DoctorsServiceImpl extends ServiceImpl<DoctorsMapper, Doctors>
                 .like(doctorDto.getSpecialty() != null, Doctors::getSpecialty, doctorDto.getSpecialty())
                 .like(doctorDto.getHospital() != null, Doctors::getHospital, doctorDto.getHospital())
                 .like(doctorDto.getBio() != null, Doctors::getBio, doctorDto.getBio()));
-        redisTemplate.opsForValue().set("doctors:"+JSONUtil.toJsonStr(doctorDto), JSONUtil.toJsonStr(doctorsPage.getRecords()), random.nextInt(31) + 30, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set("doctors:"+JSONUtil.toJsonStr(doctorDto), JSONUtil.toJsonStr(doctorsPage), random.nextInt(31) + 30, TimeUnit.SECONDS);
     }
 }
 

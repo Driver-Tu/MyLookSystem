@@ -1,7 +1,9 @@
 package com.zh.look.service;
 
-import com.zh.look.bean.Appointments;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zh.look.bean.Appointments;
+import com.zh.look.bean.dto.AppointmentsDto;
 
 /**
 * @author admin
@@ -10,4 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface AppointmentsService extends IService<Appointments> {
 
+    Page<Appointments> selectAppointments(AppointmentsDto appointmentsDto);
 }

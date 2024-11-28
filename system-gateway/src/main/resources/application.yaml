@@ -4,14 +4,31 @@ spring:
   cloud:
     gateway:
       routes:
+        #登录
         - id: system-login
           uri: http://localhost:10086
           predicates:
             - Path=/login/**
+        #医生
         - id: system-doctor
-          uri: http://localhost:10086
+          uri: http://localhost:10087
           predicates:
             - Path=/doctor/**
+        #患者
+        - id: system-patient
+          uri: http://localhost:10087
+          predicates:
+            - Path=/patients/**
+        #预约
+        - id: system-appointments
+          uri: http://localhost:10087
+          predicates:
+            - Path=/appointmentsController/**
+        #疾病
+        - id: system-diseaseCategory
+          uri: http://localhost:10087
+          predicates:
+            - Path=/diseaseCategory/**
   main:
     web-application-type: reactive
 #springboot排除自动配置

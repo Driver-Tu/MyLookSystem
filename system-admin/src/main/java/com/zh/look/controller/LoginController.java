@@ -12,6 +12,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/login")
 @Tag(name = "用户登录控制器")
@@ -32,6 +34,7 @@ public class LoginController {
         return new Result<>(200, "登录成功", userVo);
     }
 
+
     @GetMapping("/loginout")
     @Operation(summary = "退出登录", responses = {@ApiResponse(responseCode = "200", description = "退出成功"),
             @ApiResponse(responseCode = "507", description = "该设备未登录")})
@@ -51,5 +54,15 @@ public class LoginController {
             return new Result<>(200, "已登录", true);
         }
         return new Result<>(508, "未登录", false);
+    }
+
+    /**
+     * 获取权限role
+     */
+    @GetMapping("/getRole")
+    @Operation(summary = "获取权限role", responses = {@ApiResponse(responseCode = "200", description = "获取成功"),
+            @ApiResponse(responseCode = "509", description = "获取失败")})
+    public Result<List<String>> getRole() {
+        return new Result<>(200, "获取成功", StpUtil.getRoleList());
     }
 }

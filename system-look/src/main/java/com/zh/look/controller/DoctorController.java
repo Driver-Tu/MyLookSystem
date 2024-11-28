@@ -1,7 +1,6 @@
 package com.zh.look.controller;
 
 import cn.dev33.satoken.annotation.SaCheckRole;
-import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zh.look.bean.Doctors;
 import com.zh.look.bean.Reviews;
@@ -111,10 +110,15 @@ public class DoctorController {
     public Result<Object> getDoctorReviews(@RequestBody @Parameter(name = "doctorDto", description = "医生信息") DoctorDto doctorDto){
         return new Result<>(200, "获取成功", reviewsService.getDoctorReviews(doctorDto));
     }
+
+
     @SaCheckRole("2")
     @PostMapping("/getDoctorRate")
-    @Operation(summary = "获取医生详细信息", responses = {@ApiResponse(responseCode = "200", description = "获取成功")})
+    @Operation(summary = "获取医生详细评分", responses = {@ApiResponse(responseCode = "200", description = "获取成功")})
     public Result<Object> getDoctorInfo(@RequestBody @Parameter(name = "doctorDto", description = "医生信息") DoctorDto doctorDto){
+        if (stringRedisTemplate.opsForValue().get("doctorRate:"+doctorDto.getDoctorId())!=null){
+            return new Result<>(200, "获取成功", stringRedisTemplate.opsForValue().get("doctorRate:"+doctorDto.getDoctorId()));
+        }
         List<Reviews> doctorReviews = reviewsService.getDoctorReviews(doctorDto);
         AtomicReference<Long> count = new AtomicReference<>(0L);
         BigDecimal totalRating =BigDecimal.ZERO;
@@ -122,9 +126,9 @@ public class DoctorController {
             count.getAndSet(count.get() + 1);
             totalRating = totalRating.add(BigDecimal.valueOf(reviews.getRating()));
         }
-        BigDecimal averageRating = count.get() > 0 ? totalRating.divide(BigDecimal.valueOf(count.get()), 2, RoundingMode.HALF_UP) : BigDecimal.ZERO;
-        //唇乳redis
-        stringRedisTemplate.opsForValue().set("doctorRate:"+doctorDto.getDoctorId(), JSONUtil.toJsonStr(averageRating));
+        BigDecimal averageRating = count.get() > 0 ? totalRating.divide(BigDecimal.valueOf(count.get()), 2, RoundingMode.HALF_UP) : BigDecimal.valueOf(5);
+        //redis
+        stringRedisTemplate.opsForValue().set("doctorRate:"+doctorDto.getDoctorId(), averageRating.toString());
         return new Result<>(200, "获取成功", averageRating);
     }
 }

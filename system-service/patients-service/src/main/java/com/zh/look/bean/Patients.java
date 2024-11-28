@@ -50,11 +50,8 @@ public class Patients implements Serializable {
     /**
      * 患者年龄
      */
-    private Integer age;
-    /**
-     * 患者性别，0为男，1为女
-     */
-    private Integer sex;
+    private String peopleNum;
+
     /**
      * 创建时间，默认值为当前时间
      */
@@ -86,6 +83,7 @@ public class Patients implements Serializable {
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
             && (this.getPhone() == null ? other.getPhone() == null : this.getPhone().equals(other.getPhone()))
+            && (this.getPeopleNum() == null ? other.getPeopleNum() == null : this.getPeopleNum().equals(other.getPeopleNum()))
             && (this.getCreatedAt() == null ? other.getCreatedAt() == null : this.getCreatedAt().equals(other.getCreatedAt()))
             && (this.getUpdatedAt() == null ? other.getUpdatedAt() == null : this.getUpdatedAt().equals(other.getUpdatedAt()));
     }
@@ -99,6 +97,7 @@ public class Patients implements Serializable {
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
         result = prime * result + ((getPhone() == null) ? 0 : getPhone().hashCode());
+        result = prime * result + ((getPeopleNum() == null) ? 0 : getPeopleNum().hashCode());
         result = prime * result + ((getCreatedAt() == null) ? 0 : getCreatedAt().hashCode());
         result = prime * result + ((getUpdatedAt() == null) ? 0 : getUpdatedAt().hashCode());
         return result;
@@ -115,6 +114,7 @@ public class Patients implements Serializable {
         sb.append(", name=").append(name);
         sb.append(", email=").append(email);
         sb.append(", phone=").append(phone);
+        sb.append(", peopleNum=").append(peopleNum);
         sb.append(", createdAt=").append(createdAt);
         sb.append(", updatedAt=").append(updatedAt);
         sb.append(", serialVersionUID=").append(serialVersionUID);

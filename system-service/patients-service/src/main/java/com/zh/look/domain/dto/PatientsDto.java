@@ -13,6 +13,6 @@ public class PatientsDto {
     private String patientId;
     private String patientName;
     private String patientSex;
-    private String patientAge;
+    private String getBirthDate;
     private String phone;
 }

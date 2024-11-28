@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zh.look.bean.Patients;
 import com.zh.look.domain.dto.PatientsDto;
+import com.zh.look.domain.vo.PatientsVo;
 
 /**
 * @author admin
@@ -14,7 +15,7 @@ public interface PatientsService extends IService<Patients> {
     /**
      * 查询患者信息
      */
-    Page<Patients> selectPatients(PatientsDto patientsDto);
+    Page<PatientsVo> selectPatients(PatientsDto patientsDto);
     /**
      * 修改患者信息
      */
