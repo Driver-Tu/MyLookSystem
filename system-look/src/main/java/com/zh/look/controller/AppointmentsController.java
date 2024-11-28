@@ -1,5 +1,7 @@
 package com.zh.look.controller;
 
+import cn.dev33.satoken.annotation.SaCheckRole;
+import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zh.look.bean.Appointments;
 import com.zh.look.bean.dto.AppointmentsDto;
@@ -16,15 +18,33 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/appointmentsController")
 @Tag(name = "预约服务")
 public class AppointmentsController {
-    @Autowired
-    private AppointmentsService appointmentsService;
+
+    private final AppointmentsService appointmentsService;
+
+    public AppointmentsController(AppointmentsService appointmentsService) {
+        this.appointmentsService = appointmentsService;
+    }
 
     /**
-     * 换着获取个人预约信息
+     * 患者获取个人预约信息
      */
-    @PostMapping("/selectAppointments")
-    @Operation(summary = "查询预约信息", responses = {@ApiResponse(responseCode = "200", description = "查询成功")})
+    @SaCheckRole("4")
+    @PostMapping("/selectPatientAppointments")
+    @Operation(summary = "患者查询预约信息", responses = {@ApiResponse(responseCode = "200", description = "查询成功")})
     public Result<Page<Appointments>> selectAppointments(@RequestBody @Parameter(ref = "预约状态和预约时间") AppointmentsDto appointmentsDto){
+        appointmentsDto.setPatientId(StpUtil.getLoginIdAsInt());
+        return  new Result<>(200, "查询成功", appointmentsService.selectAppointments(appointmentsDto));
+    }
+
+
+    /*
+      医生获取自己的预约信息
+     */
+    @SaCheckRole("3")
+    @PostMapping("/selectDoctorAppointments")
+    @Operation(summary = "医生查询预约信息", responses = {@ApiResponse(responseCode = "200", description = "查询成功")})
+    public Result<Page<Appointments>> selectDoctorAppointments(@RequestBody @Parameter(ref = "预约状态和预约时间") AppointmentsDto appointmentsDto){
+        appointmentsDto.setDoctorId(StpUtil.getLoginIdAsInt());
         return  new Result<>(200, "查询成功", appointmentsService.selectAppointments(appointmentsDto));
     }
 }

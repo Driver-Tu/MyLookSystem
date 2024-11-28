@@ -46,7 +46,9 @@ public class AppointmentsServiceImpl extends ServiceImpl<AppointmentsMapper, App
         Page<Appointments> appointmentsPage = appointmentsMapper
                 .selectPage(page, new LambdaQueryWrapper<Appointments>()
                         .eq(null != appointmentsDto.getStatus(), Appointments::getStatus, appointmentsDto.getStatus())
-                        .eq(null != appointmentsDto.getAppointmentDate(), Appointments::getAppointmentDate, appointmentsDto.getAppointmentDate()));
+                        .eq(null != appointmentsDto.getAppointmentDate(), Appointments::getAppointmentDate, appointmentsDto.getAppointmentDate())
+                        .eq(null != appointmentsDto.getDoctorId(), Appointments::getDoctorId,appointmentsDto.getDoctorId())
+                        .eq(null != appointmentsDto.getPatientId(), Appointments::getPatientId,appointmentsDto.getPatientId()));
         stringRedisTemplate.opsForValue().set("appointments:"+JSONUtil.toJsonStr(appointmentsDto), JSONUtil.toJsonStr(appointmentsPage),30, TimeUnit.SECONDS);
         return appointmentsPage;
     }
