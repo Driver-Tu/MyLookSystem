@@ -14,7 +14,6 @@
         <module>system-gateway</module>
         <module>system-service</module>
         <module>system-look</module>
-        <module>system-service/look-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
