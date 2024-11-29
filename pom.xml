@@ -13,7 +13,7 @@
         <module>system-common</module>
         <module>system-gateway</module>
         <module>system-service</module>
-        <module>system-look</module>
+        <module>system-modules</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -5,12 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.zh.look</groupId>
-        <artifactId>system-common</artifactId>
+        <artifactId>look-system</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>common-admin</artifactId>
+    <artifactId>system-modules</artifactId>
 
+    <modules>
+        <module>system-look</module>
+    </modules>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>

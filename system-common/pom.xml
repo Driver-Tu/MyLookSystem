@@ -12,9 +12,7 @@
     <artifactId>system-common</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>common-admin</module>
         <module>common-core</module>
-        <module>common-doctor</module>
     </modules>
 
 
