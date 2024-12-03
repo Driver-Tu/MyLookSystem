@@ -1,5 +1,6 @@
 package com.zh.look.controller;
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.zh.look.bean.dao.DiseaseCategory;
 import com.zh.look.resultTool.Result;
 import com.zh.look.service.DiseaseCategoryService;
@@ -24,6 +25,7 @@ public class DiseaseCategoryController {
         this.diseaseCategoryService = diseaseCategoryService;
     }
 
+    @SaCheckPermission("2")
     @PostMapping("/getAllDiseaseCategory")
     @Operation(summary = "查询所有疾病类别", responses = {@ApiResponse(responseCode = "200", description = "查询成功")})
     public Result<List<DiseaseCategory>> getAllDiseaseCategory(){

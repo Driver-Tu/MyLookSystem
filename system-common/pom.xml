@@ -13,6 +13,11 @@
     <packaging>pom</packaging>
     <modules>
         <module>common-core</module>
+        <module>common-satoken</module>
+        <module>common-web</module>
+        <module>common-mp</module>
+        <module>common-swagger</module>
+        <module>common-exception</module>
     </modules>
 
 

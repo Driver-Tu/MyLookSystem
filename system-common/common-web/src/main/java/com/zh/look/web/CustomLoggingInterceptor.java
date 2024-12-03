@@ -1,4 +1,4 @@
-package com.zh.look.satoken;
+package com.zh.look.web;
 
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.io.IoUtil;

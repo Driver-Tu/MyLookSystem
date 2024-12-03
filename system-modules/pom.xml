@@ -10,9 +10,11 @@
     </parent>
 
     <artifactId>system-modules</artifactId>
+    <packaging>pom</packaging>
 
     <modules>
         <module>system-look</module>
+        <module>system-consultation</module>
     </modules>
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

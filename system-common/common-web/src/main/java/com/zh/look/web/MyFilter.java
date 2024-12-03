@@ -1,4 +1,4 @@
-package com.zh.look.satoken;
+package com.zh.look.web;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;

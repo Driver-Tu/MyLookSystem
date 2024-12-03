@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.zh.look</groupId>
-        <artifactId>system-service</artifactId>
+        <artifactId>system-common</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>role-service</artifactId>
+    <artifactId>common-satoken</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -19,14 +19,33 @@
     <dependencies>
         <dependency>
             <groupId>com.zh.look</groupId>
-            <artifactId>common-mp</artifactId>
+            <artifactId>common-core</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.zh.look</groupId>
-            <artifactId>common-core</artifactId>
+            <artifactId>role-service</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
+<!--        添加对satoken的依赖-->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-spring-boot3-starter</artifactId>
+        </dependency>
+        <!-- Sa-Token 整合 jwt -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-jwt</artifactId>
+        </dependency>
+        <!-- redis-->
+        <!-- Sa-Token 整合 Redis （使用 jackson 序列化方式） -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-redis-jackson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
     </dependencies>
-
 </project>

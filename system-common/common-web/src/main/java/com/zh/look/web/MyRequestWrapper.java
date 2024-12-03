@@ -1,4 +1,4 @@
-package com.zh.look.satoken;
+package com.zh.look.web;
 
 import cn.hutool.core.io.IoUtil;
 import jakarta.servlet.ReadListener;
