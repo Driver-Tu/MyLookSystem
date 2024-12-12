@@ -9,11 +9,11 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>system-admin</module>
         <module>system-common</module>
         <module>system-gateway</module>
         <module>system-service</module>
         <module>system-modules</module>
+        <module>system-auths</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -38,6 +38,11 @@
                         <artifactId>spring-boot-starter-parent</artifactId>
                         <version>${spring-boot.version}</version>
                         <type>pom</type>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-amqp</artifactId>
+                        <version>${spring-boot.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>org.springframework.boot</groupId>

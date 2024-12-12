@@ -25,8 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "患者信息控制器")
 public class PatientsController {
 
-    @Autowired
-    private PatientsService patientsService;
+
+    private final PatientsService patientsService;
+
+    public PatientsController(PatientsService patientsService) {
+        this.patientsService = patientsService;
+    }
 
     /**
      * 查询患者信息

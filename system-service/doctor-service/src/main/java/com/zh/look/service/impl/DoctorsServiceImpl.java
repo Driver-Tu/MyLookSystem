@@ -7,16 +7,22 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zh.look.ExceptionConfig.MyException;
 import com.zh.look.bean.Doctors;
+import com.zh.look.bean.Reviews;
 import com.zh.look.domain.dto.DoctorDto;
 import com.zh.look.mapper.DoctorsMapper;
+import com.zh.look.resultTool.Result;
 import com.zh.look.service.DoctorsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author admin
@@ -34,6 +40,8 @@ public class DoctorsServiceImpl extends ServiceImpl<DoctorsMapper, Doctors>
 
     private Page<Doctors> page;
     Random random = new Random();
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     @Override
     @Transactional
@@ -92,6 +100,7 @@ public class DoctorsServiceImpl extends ServiceImpl<DoctorsMapper, Doctors>
         }
         throw new MyException(604,"删除失败");
     }
+
 
 
 

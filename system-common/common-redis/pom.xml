@@ -5,25 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.zh.look</groupId>
-        <artifactId>look-system</artifactId>
+        <artifactId>system-common</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>system-common</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>common-redis</module>
-        <module>common-core</module>
-        <module>common-satoken</module>
-        <module>common-web</module>
-        <module>common-mp</module>
-        <module>common-swagger</module>
-        <module>common-exception</module>
-        <module>common-rmq</module>
-    </modules>
+    <artifactId>common-redis</artifactId>
+
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
 </project>

@@ -16,4 +16,8 @@ public interface ReviewsService extends IService<Reviews> {
     /**
      * 查看该医生的评分信息和评论
      */
+    /**
+     * 医生评分信息
+     */
+    double getDoctorRate(DoctorDto doctorDto);
 }

@@ -46,6 +46,11 @@ public class LoginLogs implements Serializable {
      */
     private String status;
 
+    /**
+     * 登录设备
+     */
+    private String device;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -65,7 +70,8 @@ public class LoginLogs implements Serializable {
             && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
             && (this.getLoginTime() == null ? other.getLoginTime() == null : this.getLoginTime().equals(other.getLoginTime()))
             && (this.getIpAddress() == null ? other.getIpAddress() == null : this.getIpAddress().equals(other.getIpAddress()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getDevice() == null ? other.getDevice() == null : this.getDevice().equals(other.getStatus()));
     }
 
     @Override
@@ -77,6 +83,7 @@ public class LoginLogs implements Serializable {
         result = prime * result + ((getLoginTime() == null) ? 0 : getLoginTime().hashCode());
         result = prime * result + ((getIpAddress() == null) ? 0 : getIpAddress().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getDevice() == null) ? 0 : getDevice().hashCode());
         return result;
     }
 
@@ -91,6 +98,7 @@ public class LoginLogs implements Serializable {
         sb.append(", loginTime=").append(loginTime);
         sb.append(", ipAddress=").append(ipAddress);
         sb.append(", status=").append(status);
+        sb.append(", device=").append(device);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

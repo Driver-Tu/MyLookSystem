@@ -34,9 +34,4 @@ public interface DoctorsService extends IService<Doctors> {
      */
     boolean deleteDoctor(Integer doctorId);
 
-
-
-
-
-
 }

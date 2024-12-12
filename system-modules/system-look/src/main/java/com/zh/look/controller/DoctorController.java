@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 @RestController
@@ -31,14 +32,17 @@ public class DoctorController {
     /**
      * 医生模块控制器
      */
-    @Autowired
-    private DoctorsService doctorsService;
-    @Autowired
-    private LikesService likeService;
-    @Autowired
-    private ReviewsService reviewsService;
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    private final DoctorsService doctorsService;
+    private final LikesService likeService;
+    private final ReviewsService reviewsService;
+    private final StringRedisTemplate stringRedisTemplate;
+
+    public DoctorController(DoctorsService doctorsService, LikesService likeService, ReviewsService reviewsService, StringRedisTemplate stringRedisTemplate) {
+        this.doctorsService = doctorsService;
+        this.likeService = likeService;
+        this.reviewsService = reviewsService;
+        this.stringRedisTemplate = stringRedisTemplate;
+    }
 
     /**
      * 只要是用户就可以查询医生信息
@@ -116,19 +120,6 @@ public class DoctorController {
     @PostMapping("/getDoctorRate")
     @Operation(summary = "获取医生详细评分", responses = {@ApiResponse(responseCode = "200", description = "获取成功")})
     public Result<Object> getDoctorInfo(@RequestBody @Parameter(name = "doctorDto", description = "医生信息") DoctorDto doctorDto){
-        if (stringRedisTemplate.opsForValue().get("doctorRate:"+doctorDto.getDoctorId())!=null){
-            return new Result<>(200, "获取成功", stringRedisTemplate.opsForValue().get("doctorRate:"+doctorDto.getDoctorId()));
-        }
-        List<Reviews> doctorReviews = reviewsService.getDoctorReviews(doctorDto);
-        AtomicReference<Long> count = new AtomicReference<>(0L);
-        BigDecimal totalRating =BigDecimal.ZERO;
-        for (Reviews reviews : doctorReviews) {
-            count.getAndSet(count.get() + 1);
-            totalRating = totalRating.add(BigDecimal.valueOf(reviews.getRating()));
-        }
-        BigDecimal averageRating = count.get() > 0 ? totalRating.divide(BigDecimal.valueOf(count.get()), 2, RoundingMode.HALF_UP) : BigDecimal.valueOf(5);
-        //redis
-        stringRedisTemplate.opsForValue().set("doctorRate:"+doctorDto.getDoctorId(), averageRating.toString());
-        return new Result<>(200, "获取成功", averageRating);
+        return new Result<>(200, "获取成功", reviewsService.getDoctorRate(doctorDto));
     }
 }

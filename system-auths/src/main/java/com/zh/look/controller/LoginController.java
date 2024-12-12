@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,12 +17,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/login")
 @Tag(name = "用户登录控制器")
+@RequiredArgsConstructor
 public class LoginController {
     /**
      * 登录模块控制器
      */
-    @Autowired
-    private UsersService usersService;
+    private final UsersService usersService;
 
     @PostMapping("/login")
     @Operation(summary = "登录",
