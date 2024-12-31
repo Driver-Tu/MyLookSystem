@@ -1,7 +1,7 @@
 package com.zh.look.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zh.look.dao.Roles;
+import com.zh.look.domain.dao.Roles;
 import com.zh.look.mapper.RolesMapper;
 import com.zh.look.service.RolesService;
 import org.springframework.stereotype.Service;

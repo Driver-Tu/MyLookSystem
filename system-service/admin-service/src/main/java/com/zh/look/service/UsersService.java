@@ -1,7 +1,8 @@
 package com.zh.look.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.zh.look.dao.Users;
+import com.zh.look.domain.dao.Users;
+import com.zh.look.domain.dto.UserLoginDto;
 import com.zh.look.domain.vo.UserVo;
 
 
@@ -11,5 +12,7 @@ import com.zh.look.domain.vo.UserVo;
 * @createDate 2024-11-06 11:12:52
 */
 public interface UsersService extends IService<Users> {
-    UserVo Login(String userName, String password,String device);
+    UserVo LoginByUserName(UserLoginDto userLoginDto);
+
+    UserVo LoginByTelephone(String telephone,String device);
 }

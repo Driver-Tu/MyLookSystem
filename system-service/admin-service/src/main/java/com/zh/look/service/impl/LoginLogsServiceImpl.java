@@ -1,7 +1,7 @@
 package com.zh.look.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zh.look.dao.LoginLogs;
+import com.zh.look.domain.dao.LoginLogs;
 import com.zh.look.iputil.IpUtil;
 import com.zh.look.mapper.LoginLogsMapper;
 import com.zh.look.service.LoginLogsService;

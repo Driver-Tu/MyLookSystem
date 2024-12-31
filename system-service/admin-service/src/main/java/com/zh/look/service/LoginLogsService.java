@@ -1,7 +1,7 @@
 package com.zh.look.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.zh.look.dao.LoginLogs;
+import com.zh.look.domain.dao.LoginLogs;
 import jakarta.servlet.http.HttpServletRequest;
 
 /**

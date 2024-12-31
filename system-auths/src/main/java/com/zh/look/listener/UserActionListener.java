@@ -2,7 +2,7 @@ package com.zh.look.listener;
 
 import cn.dev33.satoken.listener.SaTokenListener;
 import cn.dev33.satoken.stp.SaLoginModel;
-import com.zh.look.dao.LoginLogs;
+import com.zh.look.domain.dao.LoginLogs;
 import com.zh.look.iputil.IpUtil;
 import com.zh.look.service.LoginLogsService;
 import jakarta.servlet.http.HttpServletRequest;

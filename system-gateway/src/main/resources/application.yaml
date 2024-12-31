@@ -9,6 +9,10 @@ spring:
           uri: http://localhost:10086
           predicates:
             - Path=/login/**
+        - id: system-login
+          uri: http://localhost:10086
+          predicates:
+            - Path=/code/**
         #医生
         - id: system-doctor
           uri: http://localhost:10087

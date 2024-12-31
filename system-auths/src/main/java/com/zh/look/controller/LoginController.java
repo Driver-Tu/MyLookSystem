@@ -1,6 +1,7 @@
 package com.zh.look.controller;
 
 import cn.dev33.satoken.stp.StpUtil;
+import com.zh.look.domain.dto.UserLoginByTelDto;
 import com.zh.look.domain.dto.UserLoginDto;
 import com.zh.look.domain.vo.UserVo;
 import com.zh.look.resultTool.Result;
@@ -24,13 +25,23 @@ public class LoginController {
      */
     private final UsersService usersService;
 
-    @PostMapping("/login")
-    @Operation(summary = "登录",
+    @PostMapping("/loginByUserName")
+    @Operation(summary = "账号登录",
             responses = {@ApiResponse(responseCode = "200", description = "登录成功"),
                     @ApiResponse(responseCode = "506", description = "账户已登录，请先退出登录"),
                     @ApiResponse(responseCode = "510", description = "没有该用户")})
     public Result<UserVo> login(@RequestBody @Parameter(name = "userLoginDto", description = "用户登录信息") UserLoginDto userLoginDto) {
-        UserVo userVo = usersService.Login(userLoginDto.getUserName(), userLoginDto.getPassword(), userLoginDto.getDevice());
+        UserVo userVo = usersService.LoginByUserName(userLoginDto);
+        return new Result<>(200, "登录成功", userVo);
+    }
+
+    @PostMapping("/loginByTelephone")
+    @Operation(summary = "手机号登录",
+            responses = {@ApiResponse(responseCode = "200", description = "登录成功"),
+                    @ApiResponse(responseCode = "506", description = "账户已登录，请先退出登录"),
+                    @ApiResponse(responseCode = "510", description = "没有该用户")})
+    public Result<UserVo> loginByTelephone(@RequestBody @Parameter(name = "UserLoginByTelDto", description = "用户登录信息") UserLoginByTelDto userLoginByTelDto) {
+        UserVo userVo = usersService.LoginByTelephone(userLoginByTelDto.getTelephone(),userLoginByTelDto.getDevice());
         return new Result<>(200, "登录成功", userVo);
     }
 

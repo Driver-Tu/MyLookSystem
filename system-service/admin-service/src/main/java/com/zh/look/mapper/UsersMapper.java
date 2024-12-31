@@ -2,7 +2,7 @@ package com.zh.look.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zh.look.bean.UserRoles;
-import com.zh.look.dao.Users;
+import com.zh.look.domain.dao.Users;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

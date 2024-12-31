@@ -1,6 +1,6 @@
 package com.zh.look.mapper;
 
-import com.zh.look.dao.LoginLogs;
+import com.zh.look.domain.dao.LoginLogs;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

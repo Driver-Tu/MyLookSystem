@@ -1,4 +1,4 @@
-package com.zh.look.dao;
+package com.zh.look.domain.dao;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -51,6 +52,7 @@ public class LoginLogs implements Serializable {
      */
     private String device;
 
+    @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
